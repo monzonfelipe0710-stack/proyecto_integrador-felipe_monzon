@@ -16,4 +16,13 @@ describe('API de precios', () => {
     expect(respuesta.status).toBe(200);
     expect(respuesta.body).toEqual({ total: 900 });
   });
+
+    it('rechaza un descuento incorrecto', async () => {
+    const respuesta = await request(app)
+      .post('/api/precios/calcular')
+      .send({ precio: 1000, descuento: 150 });
+
+    expect(respuesta.status).toBe(400);
+    expect(respuesta.body).toHaveProperty('error');
+  });
 });
