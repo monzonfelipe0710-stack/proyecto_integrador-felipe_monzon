@@ -13,4 +13,16 @@ describe('calcularPrecioFinal', () => {
   it('rechaza descuentos superiores al 100 %', () => {
     expect(() => calcularPrecioFinal(1000, 150)).toThrow(RangeError);
   });
+
+  it('prueba descuento 100', () => {
+    expect(calcularPrecioFinal(1000, 100)).toBe(0);
+  });
+
+  it('prueba precio negativo', () => {
+    expect(() => calcularPrecioFinal(-100, 10)).toThrow(RangeError);
+  });
+
+  it('prueba descuento negativo', () => {
+    expect(() => calcularPrecioFinal(1000, -10)).toThrow(RangeError);
+  });
 });
